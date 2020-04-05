@@ -121,3 +121,14 @@ CONSTRAINT `FK_49` FOREIGN KEY `fkIdx_49` (`id_provider`) REFERENCES `provider` 
 KEY `fkIdx_52` (`id_client`),
 CONSTRAINT `FK_52` FOREIGN KEY `fkIdx_52` (`id_client`) REFERENCES `client` (`id`)
 );
+
+-- *********************************************************************************
+
+-- Valores padrão tabela `specialty`
+INSERT INTO specialty(id, name)
+VALUES
+	(1, 'Funilaria Geral'),
+    (2, 'Pintura'),
+    (3, 'Mecânica Geral'),
+    (4, 'Borracharia'),
+    (5, 'Peças')
