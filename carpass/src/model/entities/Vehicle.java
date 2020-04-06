@@ -17,11 +17,11 @@ public class Vehicle {
     private String plate;
     private Integer year;
     private String renavam;
-    private String brand;
-    private String model;
     private String color;
     
     private Client client;
+    private Brand brand;
+    private Model model;
     
     public Vehicle() {}
 
@@ -30,19 +30,19 @@ public class Vehicle {
         String plate,
         Integer year,
         String renavam,
-        String brand,
-        String model,
         String color,
-        Client client
+        Client client,
+        Brand brand,
+        Model model
     ) {
         this.id = id;
         this.plate = plate;
         this.year = year;
         this.renavam = renavam;
-        this.brand = brand;
-        this.model = model;
         this.color = color;
         this.client = client;
+        this.brand = brand;
+        this.model = model;
     }
 
     public Integer getId() {
@@ -77,22 +77,6 @@ public class Vehicle {
         this.renavam = renavam;
     }
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
     public String getColor() {
         return color;
     }
@@ -107,6 +91,22 @@ public class Vehicle {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
+    public Model getModel() {
+        return model;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
     }
 
     @Override
@@ -140,10 +140,10 @@ public class Vehicle {
                 ", plate=" + plate +
                 ", year=" + year +
                 ", renavam=" + renavam +
-                ", brand=" + brand +
-                ", model=" + model +
                 ", color=" + color +
-                ", client=" + client + '}';
+                ", client=" + client +
+                ", brand=" + brand +
+                ", model=" + model + '}';
     }
     
 }
