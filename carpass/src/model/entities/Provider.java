@@ -6,36 +6,50 @@
 package model.entities;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  *
  * @author leandro
  */
-public class Client extends User {
+public class Provider extends User {
     
-    public Client() {
+    private Plan plan;
+    
+    public Provider() {
         super();
     }
 
-    public Client(
+    public Provider(
         Integer id,
         String name,
         String email,
         String password,
         String token,
-        Date tokenUpdatedAt
+        Date tokenUpdatedAt,
+        Plan plan
     ) {
         super(id, name, email, password, token, tokenUpdatedAt);
+        this.plan = plan;
+    }
+
+    public Plan getPlan() {
+        return plan;
+    }
+
+    public void setPlan(Plan plan) {
+        this.plan = plan;
     }
 
     @Override
     public String toString() {
-        return "Client{" + "id=" + id +
+        return "Provider{" + "id=" + id +
                 ", name=" + name +
                 ", email=" + email +
                 ", password=" + password +
                 ", token=" + token +
-                ", tokenUpdatedAt=" + tokenUpdatedAt + '}';
+                ", tokenUpdatedAt=" + tokenUpdatedAt +
+                ", plan=" + plan + '}';
     }
     
 }
