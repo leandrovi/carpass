@@ -11,6 +11,7 @@ import java.sql.Statement;
 import java.sql.SQLException;
 
 import db.DB;
+import model.entities.Specialty;
 
 /**
  *
@@ -20,29 +21,8 @@ public class Program {
     
     public static void main(String [] args) {
         
-        Connection conn = null;
-        Statement st = null;
-        ResultSet rs = null;
-        
-        try {
-            conn = DB.getConnection();
-            
-            st = conn.createStatement();
-            
-            rs = st.executeQuery("SELECT * FROM specialty");
-            
-            while (rs.next()) {
-                System.out.println(rs.getInt("id") + ", " + rs.getString("name"));
-            }
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        finally {
-            DB.closeResultSet(rs);
-            DB.closeStatement(st);
-            DB.closeConnection();
-        }
+        Specialty obj = new Specialty(1, "Reparos Simples");
+        System.out.println(obj);
         
     }
     
