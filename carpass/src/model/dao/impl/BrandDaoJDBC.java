@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import model.dao.BrandDao;
 import model.entities.Brand;
-import model.entities.Model;
 
 /**
  *
