@@ -6,6 +6,7 @@
 package model.dao;
 
 import java.util.List;
+import model.entities.Brand;
 import model.entities.Model;
 
 /**
@@ -14,10 +15,8 @@ import model.entities.Model;
  */
 public interface ModelDao {
     
-    void insert(Model obj);
-    void update(Model obj);
-    void deleteById(Integer id);
     Model findById(Integer id);
     List<Model> findAll();
+    List<Model> findByBrand(Brand brand);
     
 }

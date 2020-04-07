@@ -11,6 +11,11 @@ import java.sql.Statement;
 import java.sql.SQLException;
 
 import db.DB;
+import java.util.List;
+import model.dao.DaoFactory;
+import model.dao.ModelDao;
+import model.entities.Brand;
+import model.entities.Model;
 import model.entities.Specialty;
 
 /**
@@ -21,8 +26,26 @@ public class Program {
     
     public static void main(String [] args) {
         
-        Specialty obj = new Specialty(1, "Reparos Simples");
-        System.out.println(obj);
+        ModelDao modelDao = DaoFactory.createModelDao();
+        
+        System.out.println("=== TEST 1: model findById ===");        
+        Model model = modelDao.findById(1);        
+        System.out.println(model);
+        
+        System.out.println("\n=== TEST 2: model findByBrand ==="); 
+        Brand brand = new Brand(11, null);
+        List<Model> list = modelDao.findByBrand(brand);
+        
+        for (Model item : list) {
+            System.out.println(item);
+        }
+        
+        System.out.println("\n=== TEST 3: model findAll ==="); 
+        list = modelDao.findAll();
+        
+        for (Model item : list) {
+            System.out.println(item);
+        }
         
     }
     

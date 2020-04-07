@@ -5,6 +5,7 @@
  */
 package model.dao;
 
+import db.DB;
 import model.dao.impl.BrandDaoJDBC;
 import model.dao.impl.ModelDaoJDBC;
 
@@ -19,7 +20,7 @@ public class DaoFactory {
     }
     
     public static ModelDao createModelDao() {
-        return new ModelDaoJDBC();
+        return new ModelDaoJDBC(DB.getConnection());
     }
     
 }
