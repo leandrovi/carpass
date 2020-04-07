@@ -16,7 +16,7 @@ import model.dao.impl.ModelDaoJDBC;
 public class DaoFactory {
     
     public static BrandDao createBrandDao() {
-        return new BrandDaoJDBC();
+        return new BrandDaoJDBC(DB.getConnection());
     }
     
     public static ModelDao createModelDao() {

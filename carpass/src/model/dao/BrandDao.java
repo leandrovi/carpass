@@ -14,9 +14,6 @@ import model.entities.Brand;
  */
 public interface BrandDao {
     
-    void insert(Brand obj);
-    void update(Brand obj);
-    void deleteById(Integer id);
     Brand findById(Integer id);
     List<Brand> findAll();
     
