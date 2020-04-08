@@ -59,4 +59,13 @@ application | db | gui | model
             ├── RatingService.java
             ├── SpecialtyService.java
             └── VehicleService.java
-    
+   
+## Implementações Futuras
+
+- Quantidade de agendamentos mensais por Plano
+- Entidade MonthlySchedule para controlar quantidade de agendamentos
+- Rotina na MonthlySchedule para zerar quantidade de agendamentos todo dia 1 de cada mês
+- Validações em agendamentos (data máxima para agendar e cancelar)
+- Validação de sessão com tokens
+- Dividir aplicação entre front-end e back-end para web
+- Desenvolver o app mobile para os clients e app web para os providers
