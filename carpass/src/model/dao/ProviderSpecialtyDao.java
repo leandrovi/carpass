@@ -14,8 +14,8 @@ import model.entities.ProviderSpecialty;
  */
 public interface ProviderSpecialtyDao {
     
-    void insert(ProviderSpecialty obj);
-    void update(ProviderSpecialty obj);
+    void insert(ProviderSpecialty providerSpecialty);
+    void update(ProviderSpecialty providerSpecialty);
     void deleteById(Integer id);
     ProviderSpecialty findById(Integer id);
     List<ProviderSpecialty> findAll();

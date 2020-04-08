@@ -14,8 +14,8 @@ import model.entities.Rating;
  */
 public interface RatingDao {
     
-    void insert(Rating obj);
-    void update(Rating obj);
+    void insert(Rating rating);
+    void update(Rating rating);
     void deleteById(Integer id);
     Rating findById(Integer id);
     List<Rating> findAll();

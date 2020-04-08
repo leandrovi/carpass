@@ -14,8 +14,8 @@ import model.entities.Plan;
  */
 public interface PlanDao {
     
-    void insert(Plan obj);
-    void update(Plan obj);
+    void insert(Plan plan);
+    void update(Plan plan);
     void deleteById(Integer id);
     Plan findById(Integer id);
     List<Plan> findAll();

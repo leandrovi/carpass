@@ -14,8 +14,8 @@ import model.entities.Provider;
  */
 public interface ProviderDao {
     
-    void insert(Provider obj);
-    void update(Provider obj);
+    void insert(Provider provider);
+    void update(Provider provider);
     void deleteById(Integer id);
     Provider findById(Integer id);
     List<Provider> findAll();
