@@ -9,6 +9,7 @@ import db.DB;
 import model.dao.impl.BrandDaoJDBC;
 import model.dao.impl.ClientDaoJDBC;
 import model.dao.impl.ModelDaoJDBC;
+import model.dao.impl.PlanDaoJDBC;
 import model.dao.impl.VehicleDaoJDBC;
 
 /**
@@ -27,6 +28,10 @@ public class DaoFactory {
     
     public static ModelDao createModelDao() {
         return new ModelDaoJDBC(DB.getConnection());
+    }
+    
+    public static PlanDao createPlanDao() {
+        return new PlanDaoJDBC(DB.getConnection());
     }
     
     public static VehicleDao createVehicleDao() {
