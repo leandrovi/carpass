@@ -92,7 +92,7 @@ public class VehicleDaoJDBC implements VehicleDao {
                 "   id_model = ?, " +
                 "   year = ?, " +
                 "   renavam = ?, " +
-                "   color = ?, " +
+                "   color = ? " +
                 "WHERE id = ?;"
             );
 
