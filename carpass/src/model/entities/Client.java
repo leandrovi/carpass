@@ -17,6 +17,15 @@ public class Client extends User {
         super();
     }
 
+    public Client(Integer id, String name, String email, String password) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.token = null;
+        this.tokenUpdatedAt = null;
+    }
+
     public Client(
         Integer id,
         String name,

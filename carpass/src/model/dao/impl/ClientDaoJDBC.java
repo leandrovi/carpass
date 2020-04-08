@@ -10,13 +10,12 @@ import db.DbException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.dao.ClientDao;
-import model.entities.Brand;
 import model.entities.Client;
-import model.entities.Model;
 
 /**
  *
@@ -31,29 +30,87 @@ public class ClientDaoJDBC implements ClientDao {
     }
 
     @Override
-    public void insert(Client obj) {
-            PreparedStatement st = null;
-            
-            try {
-                st = conn.prepareStatement(
-                    "INSERT INTO client(name, email, password) " +
-                    "VALUES (?, ?, ?);"
-                );
-                
-                st.setString(1, obj.getName());
-            }
-        
+    public void insert(Client client) {
+        PreparedStatement st = null;
 
+        try {
+            st = conn.prepareStatement(
+                "INSERT INTO client(name, email, password) " +
+                "VALUES (?, ?, ?)",
+                Statement.RETURN_GENERATED_KEYS
+            );
+
+            st.setString(1, client.getName());
+            st.setString(2, client.getEmail());
+            st.setString(3, client.getPassword());
+
+            int rowsAffected = st.executeUpdate();
+            
+            if (rowsAffected <= 0) {
+                throw new DbException("Unexpected error! No rows affected!");
+            }
+
+            ResultSet rs = st.getGeneratedKeys();
+
+            if (rs.next()) {
+                int id = rs.getInt(1);
+
+                client.setId(id);
+            }
+
+            DB.closeResultSet(rs);
+        }
+        catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        finally {
+            DB.closeStatement(st);
+        }
     }
 
     @Override
-    public void update(Client obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void update(Client client) {
+        PreparedStatement st = null;
+
+        try {
+            st = conn.prepareStatement(
+                "UPDATE client " +
+                "SET name = ?, email = ?, password = ? " +
+                "WHERE id = ?;"
+            );
+
+            st.setString(1, client.getName());
+            st.setString(2, client.getEmail());
+            st.setString(3, client.getPassword());
+            st.setInt(4, client.getId());
+            
+            st.executeUpdate();
+        }
+        catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        finally {
+            DB.closeStatement(st);
+        }
     }
 
     @Override
     public void deleteById(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PreparedStatement st = null;
+        
+        try {
+            st = conn.prepareStatement("DELETE FROM client WHERE id = ?;");
+            
+            st.setInt(1, id);
+            
+            st.executeUpdate();
+        }
+        catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        finally {
+            DB.closeStatement(st);
+        }
     }
 
     @Override
@@ -78,12 +135,14 @@ public class ClientDaoJDBC implements ClientDao {
                 client.setName(rs.getString("name"));
                 client.setEmail(rs.getString("email"));
                 client.setPassword(rs.getString("password"));
-                client.setToken(rs.getString("token"));
-                client.setTokenUpdatedAt(
-                    new java.util.Date(
-                        rs.getTimestamp("token_updated_at").getTime()
-                    )
-                );
+                //client.setToken(rs.getString("token"));
+                //client.setTokenUpdatedAt(
+                //    new java.util.Date(
+                //        rs.getTimestamp("token_updated_at").getTime()
+                //    )
+                //);
+                client.setToken(null);
+                client.setTokenUpdatedAt(null);
 
                 return client;
             }
@@ -122,12 +181,14 @@ public class ClientDaoJDBC implements ClientDao {
                 client.setName(rs.getString("name"));
                 client.setEmail(rs.getString("email"));
                 client.setPassword(rs.getString("password"));
-                client.setToken(rs.getString("token"));
-                client.setTokenUpdatedAt(
-                    new java.util.Date(
-                        rs.getTimestamp("token_updated_at").getTime()
-                    )
-                );
+                //client.setToken(rs.getString("token"));
+                //client.setTokenUpdatedAt(
+                //    new java.util.Date(
+                //        rs.getTimestamp("token_updated_at").getTime()
+                //    )
+                //);
+                client.setToken(null);
+                client.setTokenUpdatedAt(null);
                 
                 list.add(client);
             }
