@@ -18,6 +18,8 @@ public interface VehicleDao {
     void update(Vehicle vehicle);
     void deleteById(Integer id);
     Vehicle findById(Integer id);
+    Vehicle findByPlate(String plate);
+    Vehicle findByRenavam(String renavam);
     List<Vehicle> findAll();
     
 }
