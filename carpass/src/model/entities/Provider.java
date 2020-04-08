@@ -25,6 +25,22 @@ public class Provider extends User {
         String name,
         String email,
         String password,
+        Plan plan
+    ) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.token = null;
+        this.tokenUpdatedAt = null;
+        this.plan = plan;
+    }
+
+    public Provider(
+        Integer id,
+        String name,
+        String email,
+        String password,
         String token,
         Date tokenUpdatedAt,
         Plan plan

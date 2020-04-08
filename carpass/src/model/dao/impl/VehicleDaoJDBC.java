@@ -366,10 +366,12 @@ public class VehicleDaoJDBC implements VehicleDao {
         client.setName(rs.getString("name"));
         client.setEmail(rs.getString("email"));
         client.setPassword(rs.getString("password"));
-        client.setToken(rs.getString("token"));
-        client.setTokenUpdatedAt(
-            new java.util.Date(rs.getTimestamp("token_updated_at").getTime())
-        );
+        //client.setToken(rs.getString("token"));
+        //client.setTokenUpdatedAt(
+        //    new java.util.Date(rs.getTimestamp("token_updated_at").getTime())
+        //);
+        client.setToken(null);
+        client.setTokenUpdatedAt(null);
         
         return client;
     }
