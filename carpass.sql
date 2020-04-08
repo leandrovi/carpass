@@ -17,7 +17,7 @@ PRIMARY KEY (`id`)
 CREATE TABLE `brand`
 (
  `id`   int unsigned NOT NULL AUTO_INCREMENT ,
- `Name` varchar(45) NOT NULL ,
+ `name` varchar(45) NOT NULL ,
 
 PRIMARY KEY (`id`)
 );
@@ -28,7 +28,7 @@ CREATE TABLE `model`
 (
  `id`       int unsigned NOT NULL AUTO_INCREMENT ,
  `id_brand` int unsigned NOT NULL ,
- `Name`     varchar(60) NOT NULL ,
+ `name`     varchar(60) NOT NULL ,
 
 PRIMARY KEY (`id`),
 KEY `fkIdx_108` (`id_brand`),
