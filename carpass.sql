@@ -63,7 +63,7 @@ CREATE TABLE `plan`
 (
  `id`    int unsigned NOT NULL AUTO_INCREMENT ,
  `name`  varchar(45) NOT NULL ,
- `value` decimal unsigned NOT NULL ,
+ `value` decimal(9, 2) unsigned NOT NULL ,
 
 PRIMARY KEY (`id`)
 );
@@ -462,3 +462,14 @@ VALUES
 	(20, 'Range Rover Classic'),
 	(20, 'Range Rover Evoque'),
 	(20, 'Range Rover Sport');
+
+-- Default values for table `plan`
+INSERT INTO plan(name, value)
+VALUES
+	('CarPass 50', 79.90),
+	('CarPass 120', 149.90),
+	('CarPass 250', 259.90),
+	('CarPass Ilimitado', 350.00);
+
+
+
