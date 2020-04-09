@@ -380,7 +380,7 @@ public class RatingDaoJDBC implements RatingDao {
                 
                 if (planInstance == null) {
                     planInstance = instantiatePlan(rs);
-                    planMap.put(rs.getInt("id_brand"), planInstance);
+                    planMap.put(rs.getInt("plan_id"), planInstance);
                 } 
                 
                 if (providerInstance == null) {
