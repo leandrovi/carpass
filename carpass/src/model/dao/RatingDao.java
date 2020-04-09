@@ -6,6 +6,8 @@
 package model.dao;
 
 import java.util.List;
+import model.entities.Client;
+import model.entities.Provider;
 import model.entities.Rating;
 
 /**
@@ -18,8 +20,8 @@ public interface RatingDao {
     void update(Rating rating);
     void deleteById(Integer id);
     Rating findById(Integer id);
-    Rating findByProvider(Integer id);
-    Rating findByClient(Integer id);
+    List<Rating> findByProvider(Provider provider);
+    List<Rating> findByClient(Client client);
     List<Rating> findAll();
     
 }

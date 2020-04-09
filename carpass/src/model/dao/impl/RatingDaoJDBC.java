@@ -12,7 +12,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import model.dao.RatingDao;
 import model.entities.Client;
 import model.entities.Plan;
@@ -157,12 +160,12 @@ public class RatingDaoJDBC implements RatingDao {
             rs = st.executeQuery();
             
             if (rs.next()) {
+                Plan plan = instantiatePlan(rs);
+                Provider provider = instantiateProvider(rs, plan);
                 Client client = instantiateClient(rs);
-                Brand brand = instantiateBrand(rs);                
-                Model model = instantiateModel(rs, brand);
-                Vehicle vehicle = instantiateVehicle(rs, client, brand, model);
+                Rating rating = instantiateRating(rs, provider, client);
 
-                return vehicle;
+                return rating;
             }
             
             return null;
@@ -177,18 +180,237 @@ public class RatingDaoJDBC implements RatingDao {
     }
 
     @Override
-    public Rating findByProvider(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Rating> findByProvider(Provider provider) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        
+        try {
+            st = conn.prepareStatement(
+                "SELECT " +
+                "   rating.*, " +
+                "   provider.name as provider_name, " +
+                "   provider.email as provider_email, " +
+                "   provider.password as provider_password, " +
+                "   plan.id as plan_id, " +
+                "   plan.name as plan_name, " +
+                "   plan.value as plan_value, " +
+                "   client.name as client_name, " +
+                "   client.email as client_email, " +
+                "   client.password as client_password " +
+                "FROM rating " +
+                "INNER JOIN provider " +
+                "ON rating.id_provider = provider.id " +
+                "INNER JOIN client " +
+                "ON rating.id_client = client.id " +
+                "INNER JOIN plan " +
+                "ON provider.id_plan = plan.id " +
+                "WHERE rating.id_provider = ? " +
+                "ORDER BY created_at DESC"
+            );
+            
+            st.setInt(1, provider.getId());
+            
+            rs = st.executeQuery();
+            
+            List<Rating> list = new ArrayList<>();
+            
+            Map<Integer, Plan> planMap = new HashMap<>();
+            Map<Integer, Provider> providerMap = new HashMap<>();
+            Map<Integer, Client> clientMap = new HashMap<>();
+            
+            while (rs.next()) {
+                Plan planInstance = planMap.get(rs.getInt("plan_id"));
+                Provider providerInstance = providerMap.get(rs.getInt("id_provider"));
+                Client clientInstance = clientMap.get(rs.getInt("id_client"));
+                
+                if (planInstance == null) {
+                    planInstance = instantiatePlan(rs);
+                    planMap.put(rs.getInt("id_brand"), planInstance);
+                } 
+                
+                if (providerInstance == null) {
+                    providerInstance = instantiateProvider(rs, planInstance);
+                    providerMap.put(rs.getInt("id_brand"), providerInstance);
+                } 
+                
+                if (clientInstance == null) {
+                    clientInstance = instantiateClient(rs);
+                    clientMap.put(rs.getInt("id_client"), clientInstance);
+                } 
+                
+                Rating rating = instantiateRating(
+                    rs,
+                    providerInstance,
+                    clientInstance
+                );
+
+                list.add(rating);
+            }
+            
+            return list;
+        }
+        catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        finally {
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
     }
 
     @Override
-    public Rating findByClient(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Rating> findByClient(Client client) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        
+        try {
+            st = conn.prepareStatement(
+                "SELECT " +
+                "   rating.*, " +
+                "   provider.name as provider_name, " +
+                "   provider.email as provider_email, " +
+                "   provider.password as provider_password, " +
+                "   plan.id as plan_id, " +
+                "   plan.name as plan_name, " +
+                "   plan.value as plan_value, " +
+                "   client.name as client_name, " +
+                "   client.email as client_email, " +
+                "   client.password as client_password " +
+                "FROM rating " +
+                "INNER JOIN provider " +
+                "ON rating.id_provider = provider.id " +
+                "INNER JOIN client " +
+                "ON rating.id_client = client.id " +
+                "INNER JOIN plan " +
+                "ON provider.id_plan = plan.id " +
+                "WHERE rating.id_client = ? " +
+                "ORDER BY created_at DESC"
+            );
+            
+            st.setInt(1, client.getId());
+            
+            rs = st.executeQuery();
+            
+            List<Rating> list = new ArrayList<>();
+            
+            Map<Integer, Plan> planMap = new HashMap<>();
+            Map<Integer, Provider> providerMap = new HashMap<>();
+            Map<Integer, Client> clientMap = new HashMap<>();
+            
+            while (rs.next()) {
+                Plan planInstance = planMap.get(rs.getInt("plan_id"));
+                Provider providerInstance = providerMap.get(rs.getInt("id_provider"));
+                Client clientInstance = clientMap.get(rs.getInt("id_client"));
+                
+                if (planInstance == null) {
+                    planInstance = instantiatePlan(rs);
+                    planMap.put(rs.getInt("id_brand"), planInstance);
+                } 
+                
+                if (providerInstance == null) {
+                    providerInstance = instantiateProvider(rs, planInstance);
+                    providerMap.put(rs.getInt("id_brand"), providerInstance);
+                } 
+                
+                if (clientInstance == null) {
+                    clientInstance = instantiateClient(rs);
+                    clientMap.put(rs.getInt("id_client"), clientInstance);
+                } 
+                
+                Rating rating = instantiateRating(
+                    rs,
+                    providerInstance,
+                    clientInstance
+                );
+
+                list.add(rating);
+            }
+            
+            return list;
+        }
+        catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        finally {
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
     }
 
     @Override
     public List<Rating> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        
+        try {
+            st = conn.prepareStatement(
+                "SELECT " +
+                "   rating.*, " +
+                "   provider.name as provider_name, " +
+                "   provider.email as provider_email, " +
+                "   provider.password as provider_password, " +
+                "   plan.id as plan_id, " +
+                "   plan.name as plan_name, " +
+                "   plan.value as plan_value, " +
+                "   client.name as client_name, " +
+                "   client.email as client_email, " +
+                "   client.password as client_password " +
+                "FROM rating " +
+                "INNER JOIN provider " +
+                "ON rating.id_provider = provider.id " +
+                "INNER JOIN client " +
+                "ON rating.id_client = client.id " +
+                "INNER JOIN plan " +
+                "ON provider.id_plan = plan.id " +
+                "ORDER BY created_at DESC"
+            );
+            
+            rs = st.executeQuery();
+            
+            List<Rating> list = new ArrayList<>();
+            
+            Map<Integer, Plan> planMap = new HashMap<>();
+            Map<Integer, Provider> providerMap = new HashMap<>();
+            Map<Integer, Client> clientMap = new HashMap<>();
+            
+            while (rs.next()) {
+                Plan planInstance = planMap.get(rs.getInt("plan_id"));
+                Provider providerInstance = providerMap.get(rs.getInt("id_provider"));
+                Client clientInstance = clientMap.get(rs.getInt("id_client"));
+                
+                if (planInstance == null) {
+                    planInstance = instantiatePlan(rs);
+                    planMap.put(rs.getInt("id_brand"), planInstance);
+                } 
+                
+                if (providerInstance == null) {
+                    providerInstance = instantiateProvider(rs, planInstance);
+                    providerMap.put(rs.getInt("id_brand"), providerInstance);
+                } 
+                
+                if (clientInstance == null) {
+                    clientInstance = instantiateClient(rs);
+                    clientMap.put(rs.getInt("id_client"), clientInstance);
+                } 
+                
+                Rating rating = instantiateRating(
+                    rs,
+                    providerInstance,
+                    clientInstance
+                );
+
+                list.add(rating);
+            }
+            
+            return list;
+        }
+        catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        finally {
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
     }
     
     private Plan instantiatePlan(ResultSet rs) throws SQLException {
@@ -208,7 +430,7 @@ public class RatingDaoJDBC implements RatingDao {
         provider.setPlan(plan);
         provider.setName(rs.getString("provider_name"));
         provider.setEmail(rs.getString("provider_email"));
-        provider.setPassword(rs.getString("proviver_password"));
+        provider.setPassword(rs.getString("provider_password"));
         //provider.setToken(rs.getString("token"));
         //provider.setTokenUpdatedAt(
         //    new java.util.Date(
@@ -236,6 +458,25 @@ public class RatingDaoJDBC implements RatingDao {
         client.setTokenUpdatedAt(null);
         
         return client;
+    }
+    
+    private Rating instantiateRating(
+        ResultSet rs,
+        Provider provider,
+        Client client
+    ) throws SQLException {
+        Rating rating = new Rating();
+        
+        rating.setId(rs.getInt("id"));
+        rating.setProvider(provider);
+        rating.setClient(client);
+        rating.setScore(rs.getInt("score"));
+        rating.setComment(rs.getString("comment"));
+        rating.setCreatedAt(
+            new java.util.Date(rs.getTimestamp("created_at").getTime())
+        );
+        
+        return rating;
     }
     
 }
