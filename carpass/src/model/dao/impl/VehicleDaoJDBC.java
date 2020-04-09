@@ -143,7 +143,9 @@ public class VehicleDaoJDBC implements VehicleDao {
             st = conn.prepareStatement(
                 "SELECT " +
                 "   vehicle.*, " +
-                "   client.name as client, " +
+                "   client.name as client_name, " +
+                "   client.email as client_email, " +
+                "   client.password as client_password, " +
                 "   brand.name as brand, " +
                 "   model.name as model " +
                 "FROM vehicle " +
@@ -188,7 +190,9 @@ public class VehicleDaoJDBC implements VehicleDao {
             st = conn.prepareStatement(
                 "SELECT " +
                 "   vehicle.*, " +
-                "   client.name as client, " +
+                "   client.name as client_name, " +
+                "   client.email as client_email, " +
+                "   client.password as client_password, " +
                 "   brand.name as brand, " +
                 "   model.name as model " +
                 "FROM vehicle " +
@@ -233,7 +237,9 @@ public class VehicleDaoJDBC implements VehicleDao {
             st = conn.prepareStatement(
                 "SELECT " +
                 "   vehicle.*, " +
-                "   client.name as client, " +
+                "   client.name as client_name, " +
+                "   client.email as client_email, " +
+                "   client.password as client_password, " +
                 "   brand.name as brand, " +
                 "   model.name as model " +
                 "FROM vehicle " +
@@ -278,7 +284,9 @@ public class VehicleDaoJDBC implements VehicleDao {
             st = conn.prepareStatement(
                 "SELECT " +
                 "   vehicle.*, " +
-                "   client.name as client, " +
+                "   client.name as client_name, " +
+                "   client.email as client_email, " +
+                "   client.password as client_password, " +
                 "   brand.name as brand, " +
                 "   model.name as model " +
                 "FROM vehicle " +
@@ -352,8 +360,8 @@ public class VehicleDaoJDBC implements VehicleDao {
     private Model instantiateModel(ResultSet rs, Brand brand) throws SQLException {
         Model model = new Model();
 
-        model.setId(rs.getInt("id"));
-        model.setName(rs.getString("name"));
+        model.setId(rs.getInt("id_model"));
+        model.setName(rs.getString("model"));
         model.setBrand(brand);
         
         return model;
@@ -362,10 +370,10 @@ public class VehicleDaoJDBC implements VehicleDao {
     private Client instantiateClient(ResultSet rs) throws SQLException {
         Client client = new Client();
         
-        client.setId(rs.getInt("id"));
-        client.setName(rs.getString("name"));
-        client.setEmail(rs.getString("email"));
-        client.setPassword(rs.getString("password"));
+        client.setId(rs.getInt("id_client"));
+        client.setName(rs.getString("client_name"));
+        client.setEmail(rs.getString("client_email"));
+        client.setPassword(rs.getString("client_password"));
         //client.setToken(rs.getString("token"));
         //client.setTokenUpdatedAt(
         //    new java.util.Date(rs.getTimestamp("token_updated_at").getTime())

@@ -18,6 +18,8 @@ public interface RatingDao {
     void update(Rating rating);
     void deleteById(Integer id);
     Rating findById(Integer id);
+    Rating findByProvider(Integer id);
+    Rating findByClient(Integer id);
     List<Rating> findAll();
     
 }

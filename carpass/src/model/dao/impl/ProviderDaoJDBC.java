@@ -127,7 +127,8 @@ public class ProviderDaoJDBC implements ProviderDao {
             st = conn.prepareStatement(
                 "SELECT " +
                 "   provider.*, " +
-                "   plan.name as plan " +
+                "   plan.name as plan_name, " +
+                "   plan.value as plan_value " +
                 "FROM provider " +
                 "INNER JOIN plan " +
                 "ON provider.id_plan = plan.id " +
@@ -164,7 +165,8 @@ public class ProviderDaoJDBC implements ProviderDao {
             st = conn.prepareStatement(
                 "SELECT " +
                 "   provider.*, " +
-                "   plan.name as plan " +
+                "   plan.name as plan_name, " +
+                "   plan.value as plan_value " +
                 "FROM provider " +
                 "INNER JOIN plan " +
                 "ON provider.id_plan = plan.id " +
@@ -204,9 +206,9 @@ public class ProviderDaoJDBC implements ProviderDao {
     private Plan instantiatePlan(ResultSet rs) throws SQLException {
         Plan plan = new Plan();
         
-        plan.setId(rs.getInt("id"));
-        plan.setName(rs.getString("name"));
-        plan.setValue(rs.getDouble("value"));
+        plan.setId(rs.getInt("id_plan"));
+        plan.setName(rs.getString("plan_name"));
+        plan.setValue(rs.getDouble("plan_value"));
         
         return plan;
     }
