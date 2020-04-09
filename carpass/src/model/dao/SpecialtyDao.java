@@ -14,10 +14,8 @@ import model.entities.Specialty;
  */
 public interface SpecialtyDao {
     
-    void insert(Specialty specialty);
-    void update(Specialty specialty);
-    void deleteById(Integer id);
     Specialty findById(Integer id);
+    Specialty findByName(String name);
     List<Specialty> findAll();
     
 }

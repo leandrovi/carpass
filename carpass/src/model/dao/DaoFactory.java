@@ -12,6 +12,7 @@ import model.dao.impl.ModelDaoJDBC;
 import model.dao.impl.PlanDaoJDBC;
 import model.dao.impl.ProviderDaoJDBC;
 import model.dao.impl.RatingDaoJDBC;
+import model.dao.impl.SpecialtyDaoJDBC;
 import model.dao.impl.VehicleDaoJDBC;
 
 /**
@@ -42,6 +43,10 @@ public class DaoFactory {
     
     public static RatingDao createRatingDao() {
         return new RatingDaoJDBC(DB.getConnection());
+    }
+    
+    public static SpecialtyDao createSpecialtyDao() {
+        return new SpecialtyDaoJDBC(DB.getConnection());
     }
     
     public static VehicleDao createVehicleDao() {
