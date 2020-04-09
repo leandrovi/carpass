@@ -225,12 +225,12 @@ public class RatingDaoJDBC implements RatingDao {
                 
                 if (planInstance == null) {
                     planInstance = instantiatePlan(rs);
-                    planMap.put(rs.getInt("id_brand"), planInstance);
+                    planMap.put(rs.getInt("plan_id"), planInstance);
                 } 
                 
                 if (providerInstance == null) {
                     providerInstance = instantiateProvider(rs, planInstance);
-                    providerMap.put(rs.getInt("id_brand"), providerInstance);
+                    providerMap.put(rs.getInt("id_provider"), providerInstance);
                 } 
                 
                 if (clientInstance == null) {
@@ -304,12 +304,12 @@ public class RatingDaoJDBC implements RatingDao {
                 
                 if (planInstance == null) {
                     planInstance = instantiatePlan(rs);
-                    planMap.put(rs.getInt("id_brand"), planInstance);
+                    planMap.put(rs.getInt("plan_id"), planInstance);
                 } 
                 
                 if (providerInstance == null) {
                     providerInstance = instantiateProvider(rs, planInstance);
-                    providerMap.put(rs.getInt("id_brand"), providerInstance);
+                    providerMap.put(rs.getInt("id_provider"), providerInstance);
                 } 
                 
                 if (clientInstance == null) {
@@ -385,7 +385,7 @@ public class RatingDaoJDBC implements RatingDao {
                 
                 if (providerInstance == null) {
                     providerInstance = instantiateProvider(rs, planInstance);
-                    providerMap.put(rs.getInt("id_brand"), providerInstance);
+                    providerMap.put(rs.getInt("id_provider"), providerInstance);
                 } 
                 
                 if (clientInstance == null) {

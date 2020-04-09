@@ -7,6 +7,9 @@ package model.dao;
 
 import java.util.List;
 import model.entities.Appointment;
+import model.entities.Provider;
+import model.entities.Specialty;
+import model.entities.Vehicle;
 
 /**
  *
@@ -14,10 +17,13 @@ import model.entities.Appointment;
  */
 public interface AppointmentDao {
     
-    void insert(Appointment obj);
-    void update(Appointment obj);
+    void insert(Appointment appointment);
+    void update(Appointment appointment);
     void deleteById(Integer id);
     Appointment findById(Integer id);
+    List<Appointment> findByProvider(Provider provider);
+    List<Appointment> findByVehicle(Vehicle vehicle);
+    List<Appointment> findBySpecialty(Specialty specialty);
     List<Appointment> findAll();
     
 }
