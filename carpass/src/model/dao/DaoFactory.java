@@ -11,6 +11,7 @@ import model.dao.impl.ClientDaoJDBC;
 import model.dao.impl.ModelDaoJDBC;
 import model.dao.impl.PlanDaoJDBC;
 import model.dao.impl.ProviderDaoJDBC;
+import model.dao.impl.ProviderSpecialtyDaoJDBC;
 import model.dao.impl.RatingDaoJDBC;
 import model.dao.impl.SpecialtyDaoJDBC;
 import model.dao.impl.VehicleDaoJDBC;
@@ -39,6 +40,10 @@ public class DaoFactory {
     
     public static ProviderDao createProviderDao() {
         return new ProviderDaoJDBC(DB.getConnection());
+    }
+    
+    public static ProviderSpecialtyDao createProviderSpecialtyDao() {
+        return new ProviderSpecialtyDaoJDBC(DB.getConnection());
     }
     
     public static RatingDao createRatingDao() {
