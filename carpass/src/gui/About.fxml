@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox id="VBox" prefHeight="339.0" prefWidth="542.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+   <children>
+      <Label text="Sobre">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <padding>
+            <Insets bottom="20.0" left="20.0" top="20.0" />
+         </padding>
+      </Label>
+      <Label text="CarPass">
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
+      <Label text="Sistema de agendamento e avaliaçao de serviços do segmento Automobilistico.">
+         <VBox.margin>
+            <Insets left="20.0" top="10.0" />
+         </VBox.margin>
+      </Label>
+      <Label text="Desenvolvido por:">
+         <VBox.margin>
+            <Insets left="20.0" top="50.0" />
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label text="Denilson Murillo Silva - 0821700">
+         <VBox.margin>
+            <Insets left="20.0" top="10.0" />
+         </VBox.margin>
+      </Label>
+      <Label text="Leandro Fernandes Vieira - 082170013">
+         <VBox.margin>
+            <Insets left="20.0" top="10.0" />
+         </VBox.margin>
+      </Label>
+      <Label text="William de Almeida Oliveira - 082170032">
+         <padding>
+            <Insets left="20.0" top="10.0" />
+         </padding>
+      </Label>
+   </children>
+</VBox>
