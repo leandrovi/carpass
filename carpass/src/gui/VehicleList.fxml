@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox prefHeight="447.0" prefWidth="644.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<VBox prefHeight="447.0" prefWidth="644.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VehicleListController">
    <children>
       <Label text="Gerenciar Veiculos">
          <font>
@@ -22,18 +21,18 @@
       </Label>
       <ToolBar prefHeight="40.0" prefWidth="200.0">
         <items>
-          <Button mnemonicParsing="false" text="Novo" />
+          <Button fx:id="btNew" mnemonicParsing="false" onAction="#onBtNewAction" text="Novo" />
         </items>
       </ToolBar>
-      <TableView prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="tableViewVehicle" prefHeight="200.0" prefWidth="200.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="id" />
-          <TableColumn prefWidth="75.0" text="placa" />
-            <TableColumn prefWidth="75.0" text="marca" />
-            <TableColumn prefWidth="75.0" text="modelo" />
-            <TableColumn prefWidth="75.0" text="ano" />
-            <TableColumn prefWidth="75.0" text="renavam" />
-            <TableColumn prefWidth="75.0" text="cor" />
+          <TableColumn fx:id="tableColumnId" prefWidth="75.0" text="id" />
+          <TableColumn fx:id="tableColumnPlate" prefWidth="75.0" text="placa" />
+            <TableColumn fx:id="tableColumnBrand" prefWidth="75.0" text="marca" />
+            <TableColumn fx:id="tableColumnModel" prefWidth="75.0" text="modelo" />
+            <TableColumn fx:id="tableColumnYear" prefWidth="75.0" text="ano" />
+            <TableColumn fx:id="tableColumnRenavam" prefWidth="75.0" text="renavam" />
+            <TableColumn fx:id="tableColumnColor" prefWidth="75.0" text="cor" />
         </columns>
       </TableView>
    </children>
