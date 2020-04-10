@@ -393,6 +393,7 @@ public class VehicleDaoJDBC implements VehicleDao {
         Vehicle vehicle = new Vehicle();
         
         vehicle.setId(rs.getInt("id"));
+        vehicle.setPlate(rs.getString("plate"));
         vehicle.setClient(client);
         vehicle.setBrand(brand);
         vehicle.setModel(model);

@@ -471,5 +471,11 @@ VALUES
 	('CarPass 250', 259.90),
 	('CarPass Ilimitado', 350.00);
 
+-- Mock values for client in first implementation
+INSERT INTO client(name, email, password)
+VALUES ('Leandro Vieira', 'leandro@gmail.com', '123456');
 
+-- Mock values for provider in first implementation
+INSERT INTO provider(id_plan, name, email, password)
+VALUES (1, 'Mecânica do Zé', 'admin@mecanica.com.br', '123456');
 

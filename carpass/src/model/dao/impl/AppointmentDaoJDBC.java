@@ -158,6 +158,7 @@ public class AppointmentDaoJDBC implements AppointmentDao {
                 "   brand.name as brand_name, " +
                 "   model.id as model_id, " +
                 "   model.name as model_name, " +
+                "   vehicle.plate as vehicle_plate, " +
                 "   vehicle.year as vehicle_year, " +
                 "   vehicle.renavam as vehicle_renavam, " +
                 "   vehicle.color as vehicle_color, " +
@@ -236,6 +237,7 @@ public class AppointmentDaoJDBC implements AppointmentDao {
                 "   brand.name as brand_name, " +
                 "   model.id as model_id, " +
                 "   model.name as model_name, " +
+                "   vehicle.plate as vehicle_plate, " +
                 "   vehicle.year as vehicle_year, " +
                 "   vehicle.renavam as vehicle_renavam, " +
                 "   vehicle.color as vehicle_color, " +
@@ -365,6 +367,7 @@ public class AppointmentDaoJDBC implements AppointmentDao {
                 "   brand.name as brand_name, " +
                 "   model.id as model_id, " +
                 "   model.name as model_name, " +
+                "   vehicle.plate as vehicle_plate, " +
                 "   vehicle.year as vehicle_year, " +
                 "   vehicle.renavam as vehicle_renavam, " +
                 "   vehicle.color as vehicle_color, " +
@@ -495,6 +498,7 @@ public class AppointmentDaoJDBC implements AppointmentDao {
                 "   brand.name as brand_name, " +
                 "   model.id as model_id, " +
                 "   model.name as model_name, " +
+                "   vehicle.plate as vehicle_plate, " +
                 "   vehicle.year as vehicle_year, " +
                 "   vehicle.renavam as vehicle_renavam, " +
                 "   vehicle.color as vehicle_color, " +
@@ -625,6 +629,7 @@ public class AppointmentDaoJDBC implements AppointmentDao {
                 "   brand.name as brand_name, " +
                 "   model.id as model_id, " +
                 "   model.name as model_name, " +
+                "   vehicle.plate as vehicle_plate, " +
                 "   vehicle.year as vehicle_year, " +
                 "   vehicle.renavam as vehicle_renavam, " +
                 "   vehicle.color as vehicle_color, " +
@@ -804,6 +809,7 @@ public class AppointmentDaoJDBC implements AppointmentDao {
         Vehicle vehicle = new Vehicle();
         
         vehicle.setId(rs.getInt("id_vehicle"));
+        vehicle.setPlate(rs.getString("vehicle_plate"));
         vehicle.setClient(client);
         vehicle.setBrand(brand);
         vehicle.setModel(model);
