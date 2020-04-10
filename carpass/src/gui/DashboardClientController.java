@@ -10,6 +10,7 @@ import gui.util.Alerts;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -41,7 +42,10 @@ public class DashboardClientController implements Initializable {
 
     @FXML 
     public void onMenuItemVehiclesAction() {
-        loadView2("/gui/VehicleList.fxml");
+        loadView("/gui/VehicleList.fxml", (VehicleListController controller) -> {
+            controller.setVehicleService(new VehicleService());
+            controller.updateTableView();
+        });
     }
 
     @FXML 
@@ -56,13 +60,13 @@ public class DashboardClientController implements Initializable {
 
     @FXML 
     public void onMenuItemAboutAction() {
-        loadView("/gui/About.fxml");
+        loadView("/gui/About.fxml", emptyController -> {});
     }
     
     @Override
     public void initialize(URL uri, ResourceBundle rb) { }
     
-    private synchronized void loadView(String absoluteName) {
+    private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
             VBox newVBox = loader.load();
@@ -75,27 +79,8 @@ public class DashboardClientController implements Initializable {
             dashboardClientVBox.getChildren().add(dashbaordClientMenu);
             dashboardClientVBox.getChildren().addAll(newVBox.getChildren());
             
-        } catch (IOException e) {
-            Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
-        }
-    }
-    
-    private synchronized void loadView2(String absoluteName) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
-            VBox newVBox = loader.load();
-            
-            Scene mainScene = Main.getMainScene();
-            VBox dashboardClientVBox = (VBox) ((ScrollPane) mainScene.getRoot()).getContent();
-            
-            Node dashbaordClientMenu = dashboardClientVBox.getChildren().get(0);
-            dashboardClientVBox.getChildren().clear();
-            dashboardClientVBox.getChildren().add(dashbaordClientMenu);
-            dashboardClientVBox.getChildren().addAll(newVBox.getChildren());
-            
-            VehicleListController controller = loader.getController();
-            controller.setVehicleService(new VehicleService());
-            controller.updateTableView();
+            T controller = loader.getController();
+            initializingAction.accept(controller);
             
         } catch (IOException e) {
             Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
