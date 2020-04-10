@@ -7,22 +7,22 @@ package model.services;
 
 import java.util.List;
 import model.dao.DaoFactory;
-import model.dao.VehicleDao;
-import model.entities.Vehicle;
+import model.dao.ProviderSpecialtyDao;
+import model.entities.ProviderSpecialty;
 
 /**
  *
  * @author leandro
  */
-public class VehicleService {
+public class ProviderSpecialtyService {
     
-    private VehicleDao dao = DaoFactory.createVehicleDao();
+    private ProviderSpecialtyDao dao = DaoFactory.createProviderSpecialtyDao();
     
-    public List<Vehicle> findAll() {
+    public List<ProviderSpecialty> findAll() {
         return dao.findAll();
     }
 	
-    public void saveOrUpdate(Vehicle obj) {
+    public void saveOrUpdate(ProviderSpecialty obj) {
         if (obj.getId() == null) {
             dao.insert(obj);
         }
@@ -31,7 +31,7 @@ public class VehicleService {
         }
     }
 
-    public void remove(Vehicle obj) {
+    public void remove(ProviderSpecialty obj) {
         dao.deleteById(obj.getId());
     }
     

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="447.0" prefWidth="644.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VehicleListController">
+<VBox prefHeight="447.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VehicleListController">
    <children>
       <Label text="Gerenciar Veiculos">
          <font>
@@ -24,15 +24,15 @@
           <Button fx:id="btNew" mnemonicParsing="false" onAction="#onBtNewAction" text="Novo" />
         </items>
       </ToolBar>
-      <TableView fx:id="tableViewVehicle" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="tableViewVehicle" prefHeight="200.0" prefWidth="675.0">
         <columns>
           <TableColumn fx:id="tableColumnId" prefWidth="75.0" text="id" />
           <TableColumn fx:id="tableColumnPlate" prefWidth="75.0" text="placa" />
-            <TableColumn fx:id="tableColumnBrand" prefWidth="75.0" text="marca" />
-            <TableColumn fx:id="tableColumnModel" prefWidth="75.0" text="modelo" />
             <TableColumn fx:id="tableColumnYear" prefWidth="75.0" text="ano" />
             <TableColumn fx:id="tableColumnRenavam" prefWidth="75.0" text="renavam" />
             <TableColumn fx:id="tableColumnColor" prefWidth="75.0" text="cor" />
+            <TableColumn fx:id="tableColumnEDIT" minWidth="15.0" prefWidth="75.0" />
+            <TableColumn fx:id="tableColumnREMOVE" minWidth="15.0" prefWidth="75.0" />
         </columns>
       </TableView>
    </children>

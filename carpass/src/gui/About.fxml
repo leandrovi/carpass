@@ -5,8 +5,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox id="VBox" prefHeight="339.0" prefWidth="542.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<VBox id="VBox" prefHeight="339.0" prefWidth="542.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label text="Sobre">
          <font>
@@ -34,7 +33,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label text="Denilson Murillo Silva - 0821700">
+      <Label text="Denilson Murillo Silva - 082160032">
          <VBox.margin>
             <Insets left="20.0" top="10.0" />
          </VBox.margin>
