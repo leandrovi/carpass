@@ -477,5 +477,5 @@ VALUES ('Leandro Vieira', 'leandro@gmail.com', '123456');
 
 -- Mock values for provider in first implementation
 INSERT INTO provider(id_plan, name, email, password)
-VALUES (1, 'Mecânica do Zé', 'admin@mecanica.com.br', '123456');
+VALUES (1, 'Mecânica do Zé', 'admin@mecanica.com.br', '123456');adding
 
