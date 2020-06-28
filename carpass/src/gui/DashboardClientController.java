@@ -72,17 +72,19 @@ public class DashboardClientController implements Initializable {
             VBox newVBox = loader.load();
             
             Scene mainScene = Main.getMainScene();
+            System.out.println(mainScene);
             VBox dashboardClientVBox = (VBox) ((ScrollPane) mainScene.getRoot()).getContent();
             
-            Node dashbaordClientMenu = dashboardClientVBox.getChildren().get(0);
+            Node dashboardClientMenu = dashboardClientVBox.getChildren().get(0);
             dashboardClientVBox.getChildren().clear();
-            dashboardClientVBox.getChildren().add(dashbaordClientMenu);
+            dashboardClientVBox.getChildren().add(dashboardClientMenu);
             dashboardClientVBox.getChildren().addAll(newVBox.getChildren());
             
             T controller = loader.getController();
             initializingAction.accept(controller);            
         } catch (IOException e) {
-            Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
+            System.out.println(e.toString());
+            Alerts.showAlert("IO Exception", "Error loading view po", e.getMessage(), AlertType.ERROR);
         }
     }
     

@@ -159,7 +159,8 @@ public class VehicleFormController implements Initializable {
         Constraints.setTextFieldMaxLength(txtColor, 45);
         
         initializeComboBoxBrand();
-        initializeComboBoxModel();    }
+        initializeComboBoxModel();    
+    }
 
     private Vehicle getFormData() {
         Vehicle obj = new Vehicle();
