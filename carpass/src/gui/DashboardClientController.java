@@ -72,7 +72,6 @@ public class DashboardClientController implements Initializable {
             VBox newVBox = loader.load();
             
             Scene mainScene = Main.getMainScene();
-            System.out.println(mainScene);
             VBox dashboardClientVBox = (VBox) ((ScrollPane) mainScene.getRoot()).getContent();
             
             Node dashboardClientMenu = dashboardClientVBox.getChildren().get(0);

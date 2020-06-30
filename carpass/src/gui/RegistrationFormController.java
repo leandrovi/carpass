@@ -86,11 +86,19 @@ public class RegistrationFormController implements Initializable {
     @FXML
     public void onBtCreateNewAccountAction(ActionEvent event) {
         System.out.println("onBtCreateNewAccountAction");
+        
+        loadView("/gui/RegistrationForm.fxml", (RegistrationFormController controller) -> {
+            controller.setServices(new ClientService(), new ProviderService());
+        });
     }
     
     @FXML
     public void onBtCancelAction(ActionEvent event) {
         System.out.println("onBtCancelAction");
+        
+        loadView("/gui/RegistrationForm.fxml", (RegistrationFormController controller) -> {
+            controller.setServices(new ClientService(), new ProviderService());
+        });
     }
 
     @Override
@@ -102,8 +110,6 @@ public class RegistrationFormController implements Initializable {
         Constraints.setTextFieldMaxLength(txtName, 45);
         Constraints.setTextFieldMaxLength(txtEmail, 60);
         Constraints.setTextFieldMaxLength(txtPassword, 100);
-        
-        Stage stage = (Stage) Main.getMainScene().getWindow();
     }
     
     private void setErrorMessages(Map<String, String> errors) {
